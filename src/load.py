@@ -1,12 +1,21 @@
-import sqlite3
+# src/load.py
+from sqlalchemy import create_engine
+import os
 
-def load_to_db(df, db_name="local.db"):
+def load_to_db(df, table_name="posts"):
     """
-    1. Connect to SQLite database (or create if not exists)
-    2. Write DataFrame to table
-    3. Close connection
+    Load processed data to a database using SQLAlchemy.
+    DATABASE_URL читается из переменной окружения.
+    
+    Пример DATABASE_URL:
+    - SQLite (локально): sqlite:///local.db
+    - PostgreSQL (в Docker): postgresql+psycopg2://postgres:postgres@db:5432/postgres
     """
-    conn = sqlite3.connect(db_name)
-    df.to_sql("posts", conn, if_exists="replace", index=False)
-    conn.close()
-    print(f"[LOAD] Data loaded to {db_name} (table: posts)")
+    db_url = os.getenv("DATABASE_URL", "sqlite:///local.db")
+    engine = create_engine(db_url)
+
+    try:
+        df.to_sql(table_name, engine, if_exists="replace", index=False)
+        print(f"[LOAD] Data loaded to {db_url} (table: {table_name})")
+    except Exception as e:
+        print(f"[LOAD] Failed to load data: {e}")

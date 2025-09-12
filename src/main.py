@@ -6,7 +6,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
+load_dotenv()
 
 with open("data/raw/2025-09-12/response.json", "r") as f:
     raw_data = json.load(f)
