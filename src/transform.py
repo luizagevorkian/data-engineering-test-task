@@ -13,12 +13,12 @@ def transform_data(raw_data):
     """
     df = pd.DataFrame(raw_data)
 
-    # Пример фильтрации и преобразований
+    # filtering and conversion
     if "userId" in df.columns:
         df = df[['userId', 'id', 'title', 'body']]
         df.rename(columns={'userId': 'user_id', 'id': 'post_id'}, inplace=True)
 
-    # Добавляем вычисляемое поле
+    # Add a calculated field
     if "title" in df.columns:
         df['title_length'] = df['title'].apply(len)
 
