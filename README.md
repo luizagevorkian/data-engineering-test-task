@@ -11,6 +11,49 @@ This project implements a simple ETL process.:
 
 ---
 
+Implementation Steps
+Step 1: Data Extraction
+
+Used Python requests library to fetch posts from JSONPlaceholder API.
+
+Raw API response saved locally in:
+
+data/raw/yyyy-mm-dd/response.json
+
+Step 2: Data Transformation
+
+Loaded raw JSON using pandas.
+
+Selected only relevant fields: userId, id, title, body.
+
+Renamed columns for consistency if necessary.
+
+Added a new field: title_length (calculated length of each post title).
+
+Saved transformed data as CSV or Parquet in:
+
+data/processed/yyyy-mm-dd/data.parquet
+
+Step 3: Load into Database
+
+Created SQLite database (local.db) and a table posts.
+
+Loaded transformed data into the posts table using SQLAlchemy.
+
+Step 4: Analytics
+
+Ran SQL queries to generate basic insights:
+
+Count of unique users.
+
+Average title length.
+
+Posts per user (grouped by userId).
+
+Exported query results to CSV/JSON and included them in a PDF report.
+
+---
+
 ## Installation and start-up
 ```bash
 pip install -r requirements.txt
