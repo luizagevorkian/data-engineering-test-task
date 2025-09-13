@@ -19,3 +19,7 @@ def load_to_db(df, table_name="posts"):
         print(f"[LOAD] Data loaded to {db_url} (table: {table_name})")
     except Exception as e:
         print(f"[LOAD] Failed to load data: {e}")
+
+
+
+

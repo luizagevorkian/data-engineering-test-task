@@ -26,3 +26,15 @@ def run_queries(db_name="local.db"):
 
     conn.close()
     return results
+
+
+
+
+
+
+
+
+
+
+
+

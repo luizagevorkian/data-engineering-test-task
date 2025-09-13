@@ -2,16 +2,16 @@ import sqlite3
 import pandas as pd
 from pathlib import Path
 
-# Создаем папку data, если ее нет
+# Create folder data
 data_dir = Path("data")
 data_dir.mkdir(exist_ok=True)
 
-# Подключаемся к базе SQLite
+# Connect to SQLite
 db_path = data_dir / "local.db"
 conn = sqlite3.connect(db_path)
 
 # -------------------------
-# 1. Создаем таблицы
+# 1. Create tables
 # -------------------------
 conn.execute("""
 CREATE TABLE IF NOT EXISTS users (
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS orders (
 """)
 
 # -------------------------
-# 2. Вставляем примерные данные
+# 2. Insert data
 # -------------------------
 conn.execute("DELETE FROM users")
 conn.execute("DELETE FROM orders")
@@ -75,16 +75,22 @@ queries = {
 }
 
 # -------------------------
-# 4. Генерация CSV отчетов
+# 4. Generation CSV reports
 # -------------------------
 report_dir = Path(".")
 for name, query in queries.items():
     df = pd.read_sql_query(query, conn)
     csv_path = report_dir / f"{name}.csv"
     df.to_csv(csv_path, index=False)
-    print(f"Отчет сохранен: {csv_path}")
+    print(f"Report saved: {csv_path}")
 
-# Закрываем соединение с базой
+# Close connection with db
 conn.close()
-print("ETL процесс завершен.")
+print("ETL process ended.")
+
+
+
+
+
+
 
