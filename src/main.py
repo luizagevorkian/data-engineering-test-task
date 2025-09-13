@@ -56,7 +56,7 @@ conn.executemany("INSERT INTO orders VALUES (?, ?, ?, ?)", orders)
 conn.commit()
 
 # -------------------------
-# 3. SQL-запросы для отчета
+# 3. SQL-requests
 # -------------------------
 queries = {
     "orders_per_user": """
