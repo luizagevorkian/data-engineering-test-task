@@ -2,7 +2,7 @@
 Data Engineer Test Task
 # Mini Data Engineering Pipeline
 
-## Описание
+## Description
 This project implements a simple ETL process.:
 1. **Extract** — loads data from the public REST API.
 2. **Transform** — cleans and enriches the data.
