@@ -3,15 +3,36 @@ Data Engineer Test Task
 # Mini Data Engineering Pipeline
 
 ## Описание
-Этот проект реализует простой ETL-процесс:
-1. **Extract** — загружает данные из публичного REST API.
-2. **Transform** — очищает и обогащает данные.
-3. **Load** — загружает их в SQLite.
-4. **Analytics** — выполняет SQL-запросы и сохраняет отчет.
+This project implements a simple ETL process.:
+1. **Extract** — loads data from the public REST API.
+2. **Transform** — cleans and enriches the data.
+3. **Load** — loads it into SQLite.
+4. **Analytics** — executes SQL queries and saves the report.
 
 ---
 
-## Установка и запуск
+## Installation and start-up
 ```bash
 pip install -r requirements.txt
 python src/main.py
+
+Running via Docker
+
+Build containers:
+
+docker-compose build
+
+
+Run pipeline:
+
+docker-compose up
+
+Running via Makefile
+.PHONY: run
+run:
+    python src/main.py
+
+
+Run:
+
+make run
